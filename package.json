@@ -1,0 +1,27 @@
+{
+  "name": "nearby-ai-workspace",
+  "version": "1.0.0",
+  "description": "NearbyAI – AI-Powered Nearby Places Finder (MERN Stack)",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "mern",
+    "leaflet",
+    "openstreetmap",
+    "overpass",
+    "nominatim",
+    "osrm",
+    "ai",
+    "gemini"
+  ],
+  "author": "NearbyAI",
+  "license": "ISC"
+}

@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --success: #059669;
+  --danger: #dc2626;
+  --radius: 20px;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Ensure Leaflet container expands smoothly */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  z-index: 10;
+  border-radius: 16px;
+}
+
+/* Custom pulsing animation for user's location pin */
+@keyframes userPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 16px rgba(37, 99, 235, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+  }
+}
+
+.user-location-pulse {
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  animation: userPulse 2s infinite;
+}
+
+/* Clean popup styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  padding: 6px;
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.12);
+  border: 1px solid var(--border);
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px;
+  line-height: 1.4;
+}
+
+/* Smooth thin scrollbar for results list */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Premium Place Card CSS with subtle lift & soft shadow */
+.place-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s ease;
+}
+
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -5px rgba(15, 23, 42, 0.08), 0 10px 15px -5px rgba(15, 23, 42, 0.04);
+  border-color: #cbd5e1;
+}
+
+/* Shimmer Skeleton Loader for Cards */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.skeleton-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.6s infinite;
+  content: '';
+}
+
+/* Modern Radius Slider */
+.radius-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.radius-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.radius-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: #1d4ed8;
+}
+
+.radius-slider::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+}
+
+.radius-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+  cursor: pointer;
+}
+
+/* Input Focus Ring */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* Hide scrollbars for pill bars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
